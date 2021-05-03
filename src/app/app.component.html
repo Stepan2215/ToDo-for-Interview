@@ -25,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let task of tasks" app-task [task]="task">
+        <tr *ngFor="let task of tasks" app-task [task]="task" (onDelete)="onDelete($event)">
         </tr>
     </tbody>
 </table>

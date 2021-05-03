@@ -63,11 +63,8 @@ export class AppComponent implements OnInit {
         this.editedTask = null;
     }
 
-    // // удаление пользователя
-    // deleteUser(task: Task) {
-    //     this.serv.deleteTask(task.id).subscribe(data => {
-    //         this.statusMessage = 'Данные успешно удалены',
-    //             this.loadTasks();
-    //     });
-    // }
+    // удаление пользователя
+    onDelete(id: number) {
+        this.tasks = this.tasks.filter(task => task.id !== id);
+    }
 }

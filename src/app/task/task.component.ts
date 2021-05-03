@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../task';
 import { TaskService } from '../task.service';
 
@@ -10,6 +10,7 @@ import { TaskService } from '../task.service';
 })
 export class TaskComponent implements OnInit {
   @Input() task: Task;
+  @Output() onDelete: EventEmitter<any> = new EventEmitter();
 
   taskDetails: Task;
 
@@ -32,14 +33,13 @@ export class TaskComponent implements OnInit {
   completeTask() {
     this.taskDetails.isDone = true;
     this.serv.updateTask(this.taskDetails).subscribe(data => {
-      
+
     });
   }
 
   deleteTask() {
-    //     this.serv.deleteTask(task.id).subscribe(data => {
-    //         this.statusMessage = 'Данные успешно удалены',
-    //             this.loadTasks();
-    //     });
+    this.serv.deleteTask(this.task.id).subscribe(data => {
+      this.onDelete.emit(this.task.id)
+    });
   }
 }
