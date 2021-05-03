@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
 
     editedTask: Task;
     tasks: Array<Task>;
-    statusMessage: string;
 
     constructor(private serv: TaskService) {
         this.tasks = new Array<Task>();
@@ -51,7 +50,6 @@ export class AppComponent implements OnInit {
     saveTask() {
         // добавляем пользователя
         this.serv.createTask(this.editedTask).subscribe((data: Task) => {
-            this.statusMessage = 'Даните са успешно добавени';
             this.loadTasks();
         });
         this.editedTask = null;
