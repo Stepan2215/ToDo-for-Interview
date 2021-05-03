@@ -39,7 +39,7 @@ export class TaskComponent implements OnInit {
 
     if (hoursLeft >= 12 && !this.taskDetails.isDone) properties.push('moreThan12')
 
-    if (hoursLeft < 12 && !this.taskDetails.isDone) properties.push('lessThan12')
+    if (hoursLeft < 12 && !this.taskDetails.isDone && !this.isPastDueDate()) properties.push('lessThan12')
 
     if (this.isPastDueDate()) properties.push('past')
 

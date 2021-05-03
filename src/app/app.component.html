@@ -29,31 +29,3 @@
         </tr>
     </tbody>
 </table>
-    
-    
-<!--шаблон за четене-->
-<ng-template #readOnlyTemplate let-task>
-    <app-task [task]="task"></app-task>
-</ng-template>
-   
-<!--шаблон за редактиране-->
-<ng-template #editTemplate>
-    <td>
-        <input type="number" [(ngModel)]="editedTask.id" readonly disabled class="form-control" />
-    </td>
-    <td>
-        <input type="text" [(ngModel)]="editedTask.name" class="form-control" />
-    </td>
-    <td>
-        <input type="text" [(ngModel)]="editedTask.description" class="form-control" />
-    </td>
-    <td>
-      <input type="number" [(ngModel)]="editedTask.dueIn" class="form-control" />
-  </td>
-    <td>
-        <input type="button" value="Запази" (click)="saveTask()" class="btn btn-success" />
-    </td>
-    <td>
-        <input type="button" value="Отмяна" (click)="cancel()" class="btn btn-warning" />
-    </td>
-</ng-template>

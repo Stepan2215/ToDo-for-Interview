@@ -10,10 +10,6 @@ import { Observable } from 'rxjs';
     providers: [TaskService]
 })
 export class AppComponent implements OnInit {
-    //типове шаблони
-    @ViewChild('readOnlyTemplate', { static: false }) readOnlyTemplate: TemplateRef<any>;
-    @ViewChild('editTemplate', { static: false }) editTemplate: TemplateRef<any>;
-
     editedTask: Task;
     tasks: Array<Task>;
 
@@ -35,15 +31,6 @@ export class AppComponent implements OnInit {
     // добавяне на задача
     addTask() {
         this.editedTask = new Task(0, "", "", 0);
-    }
-
-    // загружаем один из двух шаблонов
-    loadTemplate(task: Task) {
-        if (this.editedTask && this.editedTask.id === task.id) {
-            return this.editTemplate;
-        } else {
-            return this.readOnlyTemplate;
-        }
     }
 
     // сохраняем пользователя
