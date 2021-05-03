@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
 
     editedTask: Task;
     tasks: Array<Task>;
-    isNewRecord: boolean;
     statusMessage: string;
 
     constructor(private serv: TaskService) {
@@ -30,20 +29,15 @@ export class AppComponent implements OnInit {
     //зареждане на задача
     private loadTasks() {
         this.serv.getTasks().subscribe((data: Task[]) => {
-            this.tasks = data;
+            this.tasks = data.sort((a, b) => a.id - b.id);
         });
     }
+
     // добавяне на задача
     addTask() {
         this.editedTask = new Task(0, "", "", 0);
-        this.tasks.push(this.editedTask);
-        this.isNewRecord = true;
     }
 
-    // редактиране на задача
-    editTask(task: Task) {
-        this.editedTask = new Task(task.id, task.name, task.description, task.dueIn);
-    }
     // загружаем один из двух шаблонов
     loadTemplate(task: Task) {
         if (this.editedTask && this.editedTask.id === task.id) {
@@ -52,39 +46,28 @@ export class AppComponent implements OnInit {
             return this.readOnlyTemplate;
         }
     }
+
     // сохраняем пользователя
     saveTask() {
-        if (this.isNewRecord) {
-            // добавляем пользователя
-            this.serv.createTask(this.editedTask).subscribe(data => {
-                this.statusMessage = 'Даните са успешно добавени',
-                    this.loadTasks();
-            });
-            this.isNewRecord = false;
-            this.editedTask = null;
-        } else {
-            // изменяем пользователя
-            this.serv.updateTask(this.editedTask).subscribe(data => {
-                this.statusMessage = 'Данные успешно обновлены',
-                    this.loadTasks();
-            });
-            this.editedTask = null;
-        }
+        // добавляем пользователя
+        this.serv.createTask(this.editedTask).subscribe((data: Task) => {
+            this.statusMessage = 'Даните са успешно добавени';
+            this.loadTasks();
+        });
+        this.editedTask = null;
     }
+
     // отмена редактирования
     cancel() {
         // если отмена при добавлении, удаляем последнюю запись
-        if (this.isNewRecord) {
-            this.tasks.pop();
-            this.isNewRecord = false;
-        }
         this.editedTask = null;
     }
-    // удаление пользователя
-    deleteUser(task: Task) {
-        this.serv.deleteTask(task.id).subscribe(data => {
-            this.statusMessage = 'Данные успешно удалены',
-                this.loadTasks();
-        });
-    }
+
+    // // удаление пользователя
+    // deleteUser(task: Task) {
+    //     this.serv.deleteTask(task.id).subscribe(data => {
+    //         this.statusMessage = 'Данные успешно удалены',
+    //             this.loadTasks();
+    //     });
+    // }
 }

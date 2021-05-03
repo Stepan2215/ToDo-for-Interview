@@ -1,5 +1,18 @@
 <h1>Список на задачи</h1>
 <input type="button" value="Добавить" class="btn btn-default" (click)="addTask()" />
+<div *ngIf="editedTask">
+    <div class="form-group">
+        <input placeholder="Name" type="text" [(ngModel)]="editedTask.name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input placeholder="Description" type="text" [(ngModel)]="editedTask.description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="number" [(ngModel)]="editedTask.dueIn" class="form-control" />
+    </div>
+    <input type="button" value="Запази" (click)="saveTask()" class="btn btn-success" />
+    <input type="button" value="Отмяна" (click)="cancel()" class="btn btn-warning" />
+</div>
 <table class="table table-striped">
     <thead>
         <tr>

@@ -22,14 +22,17 @@ export class TaskService {
     }
 
     createTask(task: Task) {
+        const params = new HttpParams().set('token', TOKEN);
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.post(this.url, JSON.stringify(task), { headers: myHeaders });
+        return this.http.post(this.url, JSON.stringify(task), { params, headers: myHeaders });
     }
     updateTask(task: Task) {
+        const params = new HttpParams().set('token', TOKEN);
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put(this.url, JSON.stringify(task), { headers: myHeaders });
+        return this.http.put(this.url, JSON.stringify(task), { params, headers: myHeaders });
     }
     deleteTask(id: number) {
-        return this.http.delete(this.url + '/' + id);
+        const params = new HttpParams().set('token', TOKEN);
+        return this.http.delete(this.url + '/' + id, { params });
     }
 }
