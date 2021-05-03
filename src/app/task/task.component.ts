@@ -24,4 +24,11 @@ export class TaskComponent implements OnInit {
     });
   }
 
+  isPastDueDate() {
+    return this.taskDetails && (new Date(this.taskDetails.dueDate) > new Date());
+  }
+
+  completeTask() {}
+
+  deleteTask() {}
 }

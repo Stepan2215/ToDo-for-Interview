@@ -4,5 +4,6 @@ export class Task{
         public name: string,
         public description: string,
         public dueIn: number ,
-        public dueDate?: Date) { }
+        public dueDate?: Date,
+        public isDone?: boolean, ) { }
 }
