@@ -1,6 +1,16 @@
 <td>{{task.id}}</td>
 <td>{{task.name}}</td>
-<td>{{taskDetails && taskDetails.description}}</td>
+<td>
+    {{taskDetails && taskDetails.description}}
+    <div *ngIf="taskDetails">
+        <span *ngFor="let property of getProperties()">
+            <span class="property propertyMoreThan12" *ngIf="property == 'moreThan12'" title="A task that has more than 12h remaining and is not completed"></span>
+            <span class="property propertyLessThan12" *ngIf="property == 'lessThan12'" title="A task that is not completed and has less than 12h to be completed"></span>
+            <span class="property propertyPast" *ngIf="property == 'past'" title="A task that is past its due date"></span>
+            <span class="property propertyDone" *ngIf="property == 'done'" title="A completed task"></span>
+        </span>
+    </div>
+</td>
 <td>{{taskDetails && taskDetails.dueDate }}</td>
 <td>
     <input *ngIf="taskDetails && !taskDetails.isDone && !isPastDueDate()" type="button" value="Complete" class="btn btn-default" (click)="completeTask()" />

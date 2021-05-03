@@ -1,0 +1,24 @@
+.property {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+    margin: 3px;
+    border-radius: 50%;
+    border: 1px solid grey
+}
+
+.propertyMoreThan12 {
+    background-color: yellow;
+}
+
+.propertyLessThan12 {
+    background-color: orange;
+}
+
+.propertyPast {
+    background-color: red;
+}
+
+.propertyDone {
+    background-color: green;
+}
