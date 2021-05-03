@@ -29,7 +29,7 @@ export class TaskService {
     updateTask(task: Task) {
         const params = new HttpParams().set('token', TOKEN);
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put(this.url, JSON.stringify(task), { params, headers: myHeaders });
+        return this.http.put(this.url + '/' + task.id, JSON.stringify(task), { params, headers: myHeaders });
     }
     deleteTask(id: number) {
         const params = new HttpParams().set('token', TOKEN);

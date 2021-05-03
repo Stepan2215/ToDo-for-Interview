@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../task';
 import { TaskService } from '../task.service';
@@ -28,7 +29,17 @@ export class TaskComponent implements OnInit {
     return this.taskDetails && (new Date(this.taskDetails.dueDate) < new Date());
   }
 
-  completeTask() {}
+  completeTask() {
+    this.taskDetails.isDone = true;
+    this.serv.updateTask(this.taskDetails).subscribe(data => {
+      
+    });
+  }
 
-  deleteTask() {}
+  deleteTask() {
+    //     this.serv.deleteTask(task.id).subscribe(data => {
+    //         this.statusMessage = 'Данные успешно удалены',
+    //             this.loadTasks();
+    //     });
+  }
 }
