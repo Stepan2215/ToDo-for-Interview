@@ -3,7 +3,7 @@ import { Task } from '../task';
 import { TaskService } from '../task.service';
 
 @Component({
-  selector: 'app-task',
+  selector: 'tr[app-task]',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })

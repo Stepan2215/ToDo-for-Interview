@@ -12,10 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let task of tasks">
-            <ng-template [ngTemplateOutlet]="loadTemplate(task)" 
-                        [ngTemplateOutletContext]="{ $implicit: task}">
-            </ng-template>
+        <tr *ngFor="let task of tasks" app-task [task]="task">
         </tr>
     </tbody>
 </table>
