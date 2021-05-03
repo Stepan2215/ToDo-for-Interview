@@ -1,0 +1,8 @@
+{
+    "/fps": {
+        "target": "https://auto.loanvantage360.com",
+        "changeOrigin": true,
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
