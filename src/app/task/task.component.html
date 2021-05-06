@@ -13,8 +13,8 @@
 </td>
 <td>{{taskDetails && taskDetails.dueDate }}</td>
 <td>
-    <input *ngIf="taskDetails && !taskDetails.isDone && !isPastDueDate()" type="button" value="Complete" class="btn btn-default" (click)="completeTask()" />
+    <input *ngIf="taskDetails && !taskDetails.isDone && !isPastDueDate()" type="button" value="Complete" class="btn btn-success" (click)="completeTask()" />
 </td>
 <td>
-    <input *ngIf="taskDetails && !taskDetails.isDone && !isPastDueDate()" type="button" value="Изтрий" (click)="deleteTask()" class="btn btn-danger" />
+    <input *ngIf="taskDetails && !taskDetails.isDone && !isPastDueDate()" type="button" value="Delete" (click)="deleteTask()" class="btn btn-danger" />
 </td>

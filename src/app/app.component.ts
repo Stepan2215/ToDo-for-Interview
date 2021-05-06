@@ -21,34 +21,32 @@ export class AppComponent implements OnInit {
         this.loadTasks();
     }
 
-    //зареждане на задача
     private loadTasks() {
         this.serv.getTasks().subscribe((data: Task[]) => {
             this.tasks = data.sort((a, b) => a.id - b.id);
         });
     }
 
-    // добавяне на задача
     addTask() {
         this.editedTask = new Task(0, "", "", 0);
     }
 
-    // сохраняем пользователя
+    
     saveTask() {
-        // добавляем пользователя
+        
         this.serv.createTask(this.editedTask).subscribe((data: Task) => {
             this.loadTasks();
         });
         this.editedTask = null;
     }
 
-    // отмена редактирования
+    
     cancel() {
-        // если отмена при добавлении, удаляем последнюю запись
+        
         this.editedTask = null;
     }
 
-    // удаление пользователя
+    
     onDelete(id: number) {
         this.tasks = this.tasks.filter(task => task.id !== id);
     }
